@@ -21,9 +21,13 @@ for (let i = 0; i <= 3; i += 1) {
   sectionLocal.appendChild(div);
 }
 sectionLocal.firstElementChild.classList.add('black');
+sectionLocal.firstElementChild.style.backgroundColor = 'black';
 sectionLocal.firstChild.nextSibling.classList.add('red');
+sectionLocal.firstChild.nextSibling.style.backgroundColor = 'red';
 sectionLocal.lastElementChild.previousSibling.classList.add('blue');
+sectionLocal.lastElementChild.previousSibling.style.backgroundColor = 'blue';
 sectionLocal.lastElementChild.classList.add('green');
+sectionLocal.lastElementChild.style.backgroundColor = 'green';
 
 document.querySelector('section').id = 'color-palette';
 mainLocal.appendChild(palheta);
@@ -53,29 +57,49 @@ function selecionaCor() {
   });
 }
 
-function preenchePixels () {
+function preenchePixels() {
   const localDeTrabalho = document.querySelector('ul');
   localDeTrabalho.addEventListener('click', (event) => {
     if (event.target === localDeTrabalho) {
       localDeTrabalho.style.backgroundColor = '';
     }
     else {
-      event.target.style.backgroundColor = document.querySelector('.selected').classList[1]; 
+      event.target.style.backgroundColor = document.querySelector('.selected').style.backgroundColor; 
     }
   });
 }
 // botao reset //
+const secaoBotoes = document.createElement('section');
+secaoBotoes.id = 'secaoBotoes';
+mainLocal.appendChild(secaoBotoes);
+const secaoBotoesLocal = document.querySelector('#secaoBotoes');
 const botaoCreate = document.createElement('button');
 botaoCreate.innerText = 'Limpar';
 botaoCreate.classList.add('botao');
 botaoCreate.id = 'clear-board';
-mainLocal.appendChild(botaoCreate);
+secaoBotoesLocal.appendChild(botaoCreate);
 document.querySelector('button').addEventListener('click', () => {
   const linhas = document.querySelectorAll('li');
   for (const linha of linhas) {
   linha.style.backgroundColor = '';
   }
 });
+const botaoAleatorio = document.createElement('button');
+botaoAleatorio.id = 'button-random-color';
+botaoAleatorio.innerText = 'Cores Aleatórias';
+botaoAleatorio.classList.add('botao');
+secaoBotoesLocal.appendChild(botaoAleatorio);
+botaoAleatorio.addEventListener('click', corAleatoria);
+function corAleatoria () {
+  for (let i = 0; i < 4; i += 1) {
+    const elemento = document.querySelectorAll('.color');
+    const randomRed = Math.round(Math.random() * 253);
+    const randomGreen = Math.round(Math.random() * 253);
+    const randomBlue = Math.round(Math.random() * 253);
+    console.log(randomBlue,randomGreen,randomRed);
+    elemento[i].style.backgroundColor = `rgb(${randomRed},${randomBlue},${randomGreen})`;
+  }
+}
 
 window.onload = () => {
   selecionaCor();
