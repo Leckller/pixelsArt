@@ -20,6 +20,9 @@ for (let i = 0; i <= 3; i += 1) {
   div.classList.add('color');
   sectionLocal.appendChild(div);
 }
+const secaoBotoes = document.createElement('section');
+secaoBotoes.id = 'secaoBotoes';
+mainLocal.append(secaoBotoes);
 sectionLocal.firstElementChild.classList.add('black');
 sectionLocal.firstElementChild.style.backgroundColor = 'black';
 sectionLocal.firstChild.nextSibling.classList.add('red');
@@ -69,9 +72,6 @@ function preenchePixels() {
   });
 }
 // botao reset //
-const secaoBotoes = document.createElement('section');
-secaoBotoes.id = 'secaoBotoes';
-mainLocal.appendChild(secaoBotoes);
 const secaoBotoesLocal = document.querySelector('#secaoBotoes');
 const botaoCreate = document.createElement('button');
 botaoCreate.innerText = 'Limpar';
@@ -81,15 +81,14 @@ secaoBotoesLocal.appendChild(botaoCreate);
 document.querySelector('button').addEventListener('click', () => {
   const linhas = document.querySelectorAll('li');
   for (const linha of linhas) {
-  linha.style.backgroundColor = '';
+  linha.style.backgroundColor = 'white';
   }
 });
 const botaoAleatorio = document.createElement('button');
 botaoAleatorio.id = 'button-random-color';
-botaoAleatorio.innerText = 'Cores Aleatórias';
+botaoAleatorio.innerText = 'Cores aleatórias';
 botaoAleatorio.classList.add('botao');
 secaoBotoesLocal.appendChild(botaoAleatorio);
-botaoAleatorio.addEventListener('click', corAleatoria);
 function corAleatoria () {
   for (let i = 0; i < 4; i += 1) {
     const elemento = document.querySelectorAll('.color');
@@ -100,6 +99,7 @@ function corAleatoria () {
     elemento[i].style.backgroundColor = `rgb(${randomRed},${randomBlue},${randomGreen})`;
   }
 }
+botaoAleatorio.addEventListener('click', corAleatoria);
 
 window.onload = () => {
   selecionaCor();
