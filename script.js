@@ -32,11 +32,27 @@ mainLocal.style.width = '600px';
 mainLocal.style.height = '600px';
 
 // second step //
-for (let i = 1; i <= 25; i += 1){
+for (let i = 1; i <= 25; i += 1) {
   const elemento = document.createElement('li');
   elemento.classList.add('pixel');
   document.querySelector('#pixel-board').appendChild(elemento);
 }
 
+function selecionaCor() {
+  const localDeTrabalho = document.querySelector('#color-palette');
+  localDeTrabalho.addEventListener('click', (event) => {
+    if (document.querySelector('.selected')) {
+      document.querySelector('.selected').classList.remove('selected');
+    }
+    if (event.target === document.querySelector('#color-palette')) {
+      document.querySelector('#color-palette').classList.remove('selected');
+    }
+    else {
+      event.target.classList.add('selected');
+    }
+  });
+}
+
 window.onload = () => {
+  selecionaCor();
 };
