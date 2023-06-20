@@ -101,7 +101,19 @@ function corAleatoria () {
 }
 botaoAleatorio.addEventListener('click', corAleatoria);
 
+// ---
+
+function save () {
+  const linhas = document.querySelectorAll('li');
+  const armazenamento = [];
+  for (const linha of linhas) {
+    armazenamento.push(`${linha}.style.backgroundColor`)
+    const armazenamentoLocal = localStorage.setItem('art', linha.style.backgroundColor)
+  }
+}
+
 window.onload = () => {
   selecionaCor();
   preenchePixels();
+  save();
 };
