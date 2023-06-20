@@ -27,8 +27,16 @@ sectionLocal.lastElementChild.classList.add('green');
 
 document.querySelector('section').id = 'color-palette';
 mainLocal.appendChild(palheta);
+document.querySelector('ul').id = 'pixel-board';
 mainLocal.style.width = '600px';
 mainLocal.style.height = '600px';
+
+// second step //
+for (let i = 1; i <= 25; i += 1){
+  const elemento = document.createElement('li');
+  elemento.classList.add('pixel');
+  document.querySelector('#pixel-board').appendChild(elemento);
+}
 
 window.onload = () => {
 };
