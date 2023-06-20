@@ -53,6 +53,19 @@ function selecionaCor() {
   });
 }
 
+function preenchePixels () {
+  const localDeTrabalho = document.querySelector('ul');
+  localDeTrabalho.addEventListener('click', (event) => {
+    if (event.target === localDeTrabalho) {
+      localDeTrabalho.style.backgroundColor = '';
+    }
+    else {
+      event.target.style.backgroundColor = document.querySelector('.selected').classList[1]; 
+    }
+  });
+}
+
 window.onload = () => {
   selecionaCor();
+  preenchePixels();
 };
