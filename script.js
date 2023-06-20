@@ -64,6 +64,18 @@ function preenchePixels () {
     }
   });
 }
+// botao reset //
+const botaoCreate = document.createElement('button');
+botaoCreate.innerText = 'Limpar';
+botaoCreate.classList.add('botao');
+botaoCreate.id = 'clear-board';
+mainLocal.appendChild(botaoCreate);
+document.querySelector('button').addEventListener('click', () => {
+  const linhas = document.querySelectorAll('li');
+  for (const linha of linhas) {
+  linha.style.backgroundColor = '';
+  }
+});
 
 window.onload = () => {
   selecionaCor();
