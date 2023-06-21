@@ -65,7 +65,7 @@ function save() {
   const linhas = document.querySelectorAll('li');
   for (let i = 0; i < linhas.length; i += 1) {
     armazenamento.push(linhas[i].style.backgroundColor);
-    localStorage.setItem('pixelBoard', JSON.stringify(armazenamento));
+    localStorage.setItem(`pixelBoard`, JSON.stringify(armazenamento));
   }
   armazenamento = [];
 }
@@ -91,32 +91,34 @@ secaoBotoesLocal.appendChild(botaoCreate);
 document.querySelector('button').addEventListener('click', () => {
   const linhas = document.querySelectorAll('li');
   for (const linha of linhas) {
-  linha.style.backgroundColor = 'white';
+    linha.style.backgroundColor = '';
   }
+  save();
 });
 const botaoAleatorio = document.createElement('button');
 botaoAleatorio.id = 'button-random-color';
 botaoAleatorio.innerText = 'Cores aleatórias';
 botaoAleatorio.classList.add('botao');
 secaoBotoesLocal.appendChild(botaoAleatorio);
-function corAleatoria () {
+function corAleatoria() {
   for (let i = 0; i < 4; i += 1) {
     const elemento = document.querySelectorAll('.color');
     const randomRed = Math.round(Math.random() * 253);
     const randomGreen = Math.round(Math.random() * 253);
     const randomBlue = Math.round(Math.random() * 253);
-    console.log(randomBlue,randomGreen,randomRed);
+    console.log(randomBlue, randomGreen, randomRed);
     elemento[i].style.backgroundColor = `rgb(${randomRed},${randomBlue},${randomGreen})`;
   }
 }
 botaoAleatorio.addEventListener('click', corAleatoria);
 
-// ---
 function repintando() {
   const ultimasTintas = JSON.parse(localStorage.getItem('pixelBoard'));
-  for(let i = 0; i < ultimasTintas.length; i += 1) {
-    const linha = document.querySelectorAll('li');
-    linha[i].style.backgroundColor = ultimasTintas[i];
+  if (JSON.parse(localStorage.getItem('pixelBoard')) !== null) {
+    for (let i = 0; i < ultimasTintas.length; i += 1) {
+      const linha = document.querySelectorAll('li');
+      linha[i].style.backgroundColor = ultimasTintas[i];
+    }
   }
 }
 
