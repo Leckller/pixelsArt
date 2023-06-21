@@ -59,7 +59,16 @@ function selecionaCor() {
     }
   });
 }
+let armazenamento = [];
 
+function save() {
+  const linhas = document.querySelectorAll('li');
+  for (let i = 0; i < linhas.length; i += 1) {
+    armazenamento.push(linhas[i].style.backgroundColor);
+    localStorage.setItem('pixelBoard', JSON.stringify(armazenamento));
+  }
+  armazenamento = [];
+}
 function preenchePixels() {
   const localDeTrabalho = document.querySelector('ul');
   localDeTrabalho.addEventListener('click', (event) => {
@@ -67,7 +76,8 @@ function preenchePixels() {
       localDeTrabalho.style.backgroundColor = '';
     }
     else {
-      event.target.style.backgroundColor = document.querySelector('.selected').style.backgroundColor; 
+      event.target.style.backgroundColor = document.querySelector('.selected').style.backgroundColor;
+      save();
     }
   });
 }
@@ -102,18 +112,16 @@ function corAleatoria () {
 botaoAleatorio.addEventListener('click', corAleatoria);
 
 // ---
-
-function save () {
-  const linhas = document.querySelectorAll('li');
-  const armazenamento = [];
-  for (const linha of linhas) {
-    armazenamento.push(`${linha}.style.backgroundColor`)
-    const armazenamentoLocal = localStorage.setItem('art', linha.style.backgroundColor)
+function repintando() {
+  const ultimasTintas = JSON.parse(localStorage.getItem('pixelBoard'));
+  for(let i = 0; i < ultimasTintas.length; i += 1) {
+    const linha = document.querySelectorAll('li');
+    linha[i].style.backgroundColor = ultimasTintas[i];
   }
 }
 
 window.onload = () => {
   selecionaCor();
   preenchePixels();
-  save();
+  repintando();
 };
