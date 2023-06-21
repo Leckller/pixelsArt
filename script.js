@@ -59,13 +59,13 @@ function selecionaCor() {
     }
   });
 }
-let armazenamento = [];
 
 function save() {
-  const linhas = document.querySelectorAll('li');
+  let armazenamento = [];
+  const linhas = document.querySelectorAll('.pixel');
   for (let i = 0; i < linhas.length; i += 1) {
     armazenamento.push(linhas[i].style.backgroundColor);
-    localStorage.setItem(`pixelBoard`, JSON.stringify(armazenamento));
+    localStorage.setItem('pixelBoard', JSON.stringify(armazenamento));
   }
   armazenamento = [];
 }
@@ -116,12 +116,14 @@ function repintando() {
   const ultimasTintas = JSON.parse(localStorage.getItem('pixelBoard'));
   if (JSON.parse(localStorage.getItem('pixelBoard')) !== null) {
     for (let i = 0; i < ultimasTintas.length; i += 1) {
-      const linha = document.querySelectorAll('li');
+      const linha = document.querySelectorAll('.pixel');
       linha[i].style.backgroundColor = ultimasTintas[i];
     }
   }
 }
 
+repintando();
+save();
 window.onload = () => {
   selecionaCor();
   preenchePixels();
