@@ -7,7 +7,7 @@ const cabecalho = document.querySelector('#cabecalho');
 cabecalho.appendChild(tituloCreate);
 const h1Cabecalho = document.querySelector('h1');
 h1Cabecalho.id = 'title';
-h1Cabecalho.innerText = "Paleta de Cores";
+h1Cabecalho.innerText = 'Paleta de Cores';
 const principal = document.createElement('main');
 const palheta = document.createElement('ul');
 corpo.appendChild(principal);
@@ -46,15 +46,15 @@ for (let i = 1; i <= 25; i += 1) {
 }
 
 function selecionaCor() {
-  const localDeTrabalho = document.querySelector('#color-palette');
+  const color = '#color-palette';
+  const localDeTrabalho = document.querySelector(color);
   localDeTrabalho.addEventListener('click', (event) => {
     if (document.querySelector('.selected')) {
       document.querySelector('.selected').classList.remove('selected');
     }
-    if (event.target === document.querySelector('#color-palette')) {
-      document.querySelector('#color-palette').classList.remove('selected');
-    }
-    else {
+    if (event.target === document.querySelector(color)) {
+      document.querySelector(color).classList.remove('selected');
+    } else {
       event.target.classList.add('selected');
     }
   });
@@ -74,9 +74,9 @@ function preenchePixels() {
   localDeTrabalho.addEventListener('click', (event) => {
     if (event.target === localDeTrabalho) {
       localDeTrabalho.style.backgroundColor = '';
-    }
-    else {
-      event.target.style.backgroundColor = document.querySelector('.selected').style.backgroundColor;
+    } else {
+      event.target.style.backgroundColor = document
+        .querySelector('.selected').style.backgroundColor;
       save();
     }
   });
